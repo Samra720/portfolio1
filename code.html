@@ -1,1 +1,975 @@
 <!-- my html file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a62626559b.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./searchCSS.css">
+    <title>All Products</title>
+</head>
+<body>
+    <div class="main pt-4">
+        <header class="py-3 pt-4 sticky-top">
+            <div class="container">
+                <form class="justify-content-center mb-3">
+                    <div class="input-group" id="form1">
+                        <!-- <button type="button" class="btn btn-dark dropdown-toggle btn-outline-light" data-bs-toggle="dropdown">Filter</button>
+                        <ul class="dropdown-menu rounded myBtnContainer">
+                            <li>
+                                <a class="dropdown-item active" onclick="filterSelection('all')">All products</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" onclick="filterSelection('diamond')">Diamond Jewellery</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Black Jewellery</a>
+                            </li>
+                        </ul> -->
+                        <input type="text" class="form-control" placeholder="What I am looking for..." name="search" id="searchInput">
+                        <button class="btn btn-dark btn-outline-light" type="button" id="searchButton" onclick="searchFunction()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('all')">All Jewelery</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('bracelet')">Bracelets</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('brooch')">Brooches</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('earring')">Earrings</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('crown')">Crowns</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('necklace')">Necklaces</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('pendant')">Pendants</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('ring')">Rings</button>
+                        <button type="button" class="btn py-2 btn-outline-light" onclick="filterSelection('set')">Sets</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn py-2 btn-outline-light" id="loginButton"></button>
+                        <button type="button" class="btn py-2 btn-outline-light"  id="showCartButton"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
+                        <!-- The Modal -->
+                        <!-- <div class="modal fade" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Modal Heading</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Modal body..
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="cartContent"></p>
+                                        <p id="totalPrice"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="cart-drawer" id="cartDrawer">
+                            <div class="cart-content">
+                                <div id="cartEmptyMessage"></div>
+                                <div id="cartItems"></div>
+                                <p id="totalPrice"></p>
+                            </div>
+                            <button class="btn btn-secondary" id="closeCartButton">Close Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>       
+        <section class="allItems container py-5" id="gallery">
+            <div class="card item black diamond bracelet d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Bracelets/diamond-black-bracelet.jpg" alt="black-diamond-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline  addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond bracelet d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Bracelets/diamond-blue-bracelet.jpg" alt="blue-diamond-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond bracelet d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Bracelets/diamond-green-bracelet.jpg" alt="green-diamond-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond bracelet d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Bracelets/diamond-red-bracelet.jpg" alt="red-diamond-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond bracelet d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Bracelets/diamond-white-bracelet.jpg" alt="white-diamond-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="card item black diamond brooch d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Broach/diamond-black-brooch.jpg" alt="black-diamond-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond brooch d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Broach/diamond-blue-brooch.jpg" alt="blue-diamond-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond brooch d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Broach/diamond-green-brooch.jpg" alt="green-diamond-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond brooch d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Broach/diamond-red-brooch.jpg" alt="red-diamond-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond brooch d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Broach/diamond-white-brooch.webp" alt="white-diamond-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black diamond earrings d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Earings/diamond-black-earings.jpg" alt="black-diamond-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond earring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Earings/diamond-blue-earings.jpg" alt="blue-diamond-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond earring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Earings/diamond-green-earings.jpg" alt="green-diamond-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond earring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Earings/diamond-red-earings.webp" alt="red-diamond-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond earring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Earings/diamond-white-earings.webp" alt="white-diamond-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black diamond crown d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Head Crown/diamond-black-crown.jpg" alt="black-diamond-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond crown d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Head Crown/diamond-blue-crown.jpg" alt="blue-diamond-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond crown d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Head Crown/diamond-green-crown.webp" alt="green-diamond-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond crown d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Head Crown/diamond-red-crown.webp" alt="red-diamond-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond crown d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Head Crown/diamond-white-crown.jpg" alt="white-diamond-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black diamond necklace d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Necklace/diamond-black-necklace.jpg" alt="black-diamond-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond necklace d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Necklace/diamond-blue-necklace.jpg" alt="blue-diamond-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond necklace d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Necklace/diamond-green-necklace.jpg" alt="green-diamond-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond necklace d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Necklace/diamond-red-necklace.jpg" alt="red-diamond-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond necklace d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Necklace/diamond-white-necklace.webp" alt="white-diamond-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black diamond pendant d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Pendants/diamond-black-pendant.jpg" alt="black-diamond-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond pendant d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Pendants/diamond-blue-pendant.webp" alt="blue-diamond-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond pendant d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Pendants/diamond-green-pendant.webp" alt="green-diamond-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond pendant d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Pendants/diamond-red-necklace.jpg" alt="red-diamond-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond pendant d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Pendants/diamond-white-pendant.jpg" alt="white-diamond-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card item black diamond ring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Rings/diamond-black-ring.jpg" alt="black-diamond-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond ring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Rings/diamond-blue-earing.webp" alt="blue-diamond-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond ring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Rings/diamond-green-ring.jpg" alt="green-diamond-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond ring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Rings/diamond-red-ring.webp" alt="red-diamond-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond ring d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Rings/diamond-white-ring.jpg" alt="white-diamond-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black diamond set d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Sets/diamond-black-set.jpg" alt="black-diamond-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black Diamond set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue diamond set d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Sets/diamond-blue-set.jpg" alt="blue-diamond-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue Diamond set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green diamond set d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Sets/diamond-green-set.webp" alt="green-diamond-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green Diamond set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red diamond set d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Sets/diamond-red-set.jpg" alt="red-diamond-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red Diamond set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white diamond set d-flex flex-row mb-3">
+                <img src="./Images/Diamond/Sets/diamond-white-set.jpg" alt="white-diamond-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White Diamond set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card item black gold bracelet d-flex flex-row mb-3">
+                <img src="./Images/Gold/Bracelets/gold-black-bracelet.webp" alt="black-diamond-gold">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold bracelet d-flex flex-row mb-3">
+                <img src="./Images/Gold/Bracelets/gold-blue-bracelet.webp" alt="blue-gold-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold bracelet d-flex flex-row mb-3">
+                <img src="./Images/Gold/Bracelets/gold-green-bracelet.webp" alt="green-gold-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold bracelet d-flex flex-row mb-3">
+                <img src="./Images/Gold/Bracelets/gold-red-bracelet.png" alt="red-gold-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold bracelet d-flex flex-row mb-3">
+                <img src="./Images/Gold/Bracelets/gold-white-bracelet.jpg" alt="white-gold-bracelet">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold Bracelet</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="card item black gold brooch d-flex flex-row mb-3">
+                <img src="./Images/Gold/Broach/gold-black-brooch.jpg" alt="black-gold-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold brooch d-flex flex-row mb-3">
+                <img src="./Images/Gold/Broach/gold-blue-brooch.webp" alt="blue-gold-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold brooch d-flex flex-row mb-3">
+                <img src="./Images/Gold/Broach/gold-green-brooch.webp" alt="green-gold-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold brooch d-flex flex-row mb-3">
+                <img src="./Images/Gold/Broach/gold-red-brooch.webp" alt="red-gold-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold brooch d-flex flex-row mb-3">
+                <img src="./Images/Gold/Broach/gold-white-brooch.webp" alt="white-gold-brooch">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold Brooch</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item green gold earring d-flex flex-row mb-3" >
+                <img src="./Images/Gold/Earings/gold-green-earings.jpg" alt="green-gold-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold earring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Earings/gold-red-earings.webp" alt="red-gold-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold earring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Earings/gold-white-earings.webp" alt="white-gold-earrings">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold Earrings</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black gold crown d-flex flex-row mb-3">
+                <img src="./Images/Gold/Head Crown/gold-black-crown.webp" alt="black-gold-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold crown d-flex flex-row mb-3">
+                <img src="./Images/Gold/Head Crown/gold-blue-crown.webp" alt="blue-gold-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold crown d-flex flex-row mb-3">
+                <img src="./Images/Gold/Head Crown/gold-green-crown.webp" alt="green-gold-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold crown d-flex flex-row mb-3">
+                <img src="./Images/Gold/Head Crown/gold-red-crown.webp" alt="red-gold-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold crown d-flex flex-row mb-3">
+                <img src="./Images/Gold/Head Crown/gold-white-crown.jpg" alt="white-gold-crown">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold crown</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black gold necklace d-flex flex-row mb-3">
+                <img src="./Images/Gold/Necklace/gold-black-necklace.jpg" alt="black-gold-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold necklace d-flex flex-row mb-3">
+                <img src="./Images/Gold/Necklace/gold-blue-necklace.jpg" alt="blue-gold-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold necklace d-flex flex-row mb-3">
+                <img src="./Images/Gold/Necklace/gold-green-necklace.jpg" alt="green-gold-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold necklace d-flex flex-row mb-3">
+                <img src="./Images/Gold/Necklace/gold-red-necklace.jpg" alt="red-gold-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold necklace d-flex flex-row mb-3">
+                <img src="./Images/Gold/Necklace/gold-white-necklace.jpg" alt="white-gold-necklace">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold necklace</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black gold pendant d-flex flex-row mb-3">
+                <img src="./Images/Gold/Pendants/gold-black-pendant.jpg" alt="black-gold-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold pendant d-flex flex-row mb-3">
+                <img src="./Images/Gold/Pendants/gold-blue-pendant.webp" alt="blue-gold-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold pendant d-flex flex-row mb-3">
+                <img src="./Images/Gold/Pendants/gold-green-pendant.jpg" alt="green-gold-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold pendant d-flex flex-row mb-3">
+                <img src="./Images/Gold/Pendants/gold-red-pendant.webp" alt="red-gold-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold pendant d-flex flex-row mb-3">
+                <img src="./Images/Gold/Pendants/gold-white-pendant.jpg" alt="white-gold-pendant">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold pendant</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card item black gold ring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Rings/gold-black-ring.jpg" alt="black-gold-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold ring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Rings/gold-blue-ring.jpg" alt="blue-gold-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold ring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Rings/gold-green-ring.webp" alt="green-gold-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold ring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Rings/gold-red-ring.jpg" alt="red-gold-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold ring d-flex flex-row mb-3">
+                <img src="./Images/Gold/Rings/gold-white-ring.webp" alt="white-gold-ring">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold ring</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card item black gold set d-flex flex-row mb-3">
+                <img src="./Images/Gold/Sets/gold-black-set.webp" alt="black-gold-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Black gold set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item blue gold set d-flex flex-row mb-3">
+                <img src="./Images/Gold/Sets/gold-blue-set.jpg" alt="blue-gold-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Blue gold set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item green gold set d-flex flex-row mb-3">
+                <img src="./Images/Gold/Sets/gold-green-set.jpg" alt="green-gold-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Green gold set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item red gold set d-flex flex-row mb-3">
+                <img src="./Images/Gold/Sets/gold-red-set.webp" alt="red-gold-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">Red gold set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card item white gold set d-flex flex-row mb-3">
+                <img src="./Images/Gold/Sets/gold-white-set.webp" alt="white-gold-set">
+                <div class="d-flex flex-column flex-wrap p-3">
+                    <h4 class="itemName">White gold set</h4>
+                    <p>Embrace elegance with our Black Diamond Bracelet. Featuring rare black diamonds, this captivating piece adds a touch of sophistication to any look, making it a timeless accessory for every occasion.</p>
+                    <div>
+                        <p style="display: inline;"><b>Price:</b> <em class="price">500</em></p>
+                        <button class="btn btn-outline-light d-inline addToCartButton" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="JS.js"></script>
+</body>
+</html>
